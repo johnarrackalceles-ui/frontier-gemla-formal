@@ -1,0 +1,32 @@
+name: Lean Formal Checks
+
+on:
+  push:
+    paths:
+      - "FrontierGEMLA/**"
+      - "FrontierGEMLA.lean"
+      - "lakefile.lean"
+      - "lean-toolchain"
+      - ".github/workflows/lean.yml"
+  pull_request:
+    paths:
+      - "FrontierGEMLA/**"
+      - "FrontierGEMLA.lean"
+      - "lakefile.lean"
+      - "lean-toolchain"
+      - ".github/workflows/lean.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: leanprover/lean-action@v1
+        with:
+          build: true
+          test: false
+          lint: false
+          use-mathlib-cache: false
