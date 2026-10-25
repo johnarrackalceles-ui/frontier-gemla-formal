@@ -1,0 +1,3 @@
+@'
+import FrontierGEMLA.Spike.G3A_S1_ladder_rules
+'@ | Set-Content .\FrontierGEMLA.lean
