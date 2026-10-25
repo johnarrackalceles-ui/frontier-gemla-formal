@@ -6,15 +6,19 @@ on:
       - "FrontierGEMLA/**"
       - "FrontierGEMLA.lean"
       - "lakefile.lean"
+      - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+
   pull_request:
     paths:
       - "FrontierGEMLA/**"
       - "FrontierGEMLA.lean"
       - "lakefile.lean"
+      - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+
   workflow_dispatch:
 
 jobs:
