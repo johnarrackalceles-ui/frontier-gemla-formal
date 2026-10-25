@@ -34,3 +34,9 @@ jobs:
           test: false
           lint: false
           use-mathlib-cache: false
+          axiom-audit: true
+          axiom-audit-root: FrontierGEMLA
+          axiom-audit-allow: "propext"
+
+      - name: Print theorem axioms
+        run: lake env lean FrontierGEMLA/Spike/AxiomReport.lean
