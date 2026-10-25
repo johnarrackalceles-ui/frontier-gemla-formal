@@ -1,1 +1,3 @@
-import FrontierGEMLA.Spike.G3A_S1_ladder_rules
+import FrontierGEMLA.Shared.Types
+import FrontierGEMLA.Ladder.Conditional
+import FrontierGEMLA.Ladder.S1
