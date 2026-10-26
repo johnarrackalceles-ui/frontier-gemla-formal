@@ -21,3 +21,4 @@ import FrontierGEMLA.Ladder.S3ClaimGate
 import FrontierGEMLA.Ladder.S3BoundedClaim
 import FrontierGEMLA.Ladder.S3RecursiveBinding
 import FrontierGEMLA.Ladder.S3GateBinding
+import FrontierGEMLA.Ladder.S3CrossPhaseClosure
