@@ -18,3 +18,4 @@ import FrontierGEMLA.Ladder.S2NonEscalation
 import FrontierGEMLA.Ladder.S2Closure
 import FrontierGEMLA.Ladder.S3Readiness
 import FrontierGEMLA.Ladder.S3ClaimGate
+import FrontierGEMLA.Ladder.S3BoundedClaim
