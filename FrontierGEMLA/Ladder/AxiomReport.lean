@@ -1,6 +1,7 @@
 import FrontierGEMLA.Ladder.Conditional
 import FrontierGEMLA.Ladder.S1
 import FrontierGEMLA.Ladder.Jq
+import FrontierGEMLA.Ladder.S1Identity
 
 #print axioms FrontierGEMLA.enterS1_ignores_G2_G3
 #print axioms FrontierGEMLA.acceptS1_needs_ops
@@ -26,3 +27,7 @@ import FrontierGEMLA.Ladder.Jq
 #print axioms FrontierGEMLA.jq_fails_if_protected_boundaries_fail
 #print axioms FrontierGEMLA.jq_fails_if_promotion_semantics_fail
 #print axioms FrontierGEMLA.jq_fails_if_self_observation_schema_fail
+
+#print axioms FrontierGEMLA.enterS1Typed_bridge
+#print axioms FrontierGEMLA.enterS1Typed_requires_shared_generation
+#print axioms FrontierGEMLA.enterS1Typed_requires_shared_constitution
