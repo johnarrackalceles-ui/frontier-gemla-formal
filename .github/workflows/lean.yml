@@ -9,6 +9,7 @@ on:
       - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+      - ".gitattributes"
 
   pull_request:
     paths:
@@ -18,6 +19,7 @@ on:
       - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+      - ".gitattributes"
 
   workflow_dispatch:
 
