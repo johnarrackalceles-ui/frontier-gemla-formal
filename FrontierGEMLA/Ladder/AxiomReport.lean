@@ -17,3 +17,12 @@ import FrontierGEMLA.Ladder.Jq
 #print axioms FrontierGEMLA.jq_requires_protected_boundaries
 #print axioms FrontierGEMLA.jq_requires_promotion_semantics
 #print axioms FrontierGEMLA.jq_requires_self_observation_schema
+
+#print axioms FrontierGEMLA.jq_fails_if_not_joinable
+#print axioms FrontierGEMLA.jq_fails_if_semantic_meanings_fail
+#print axioms FrontierGEMLA.jq_fails_if_identity_namespaces_fail
+#print axioms FrontierGEMLA.jq_fails_if_evidence_hash_semantics_fail
+#print axioms FrontierGEMLA.jq_fails_if_reconstruction_rules_fail
+#print axioms FrontierGEMLA.jq_fails_if_protected_boundaries_fail
+#print axioms FrontierGEMLA.jq_fails_if_promotion_semantics_fail
+#print axioms FrontierGEMLA.jq_fails_if_self_observation_schema_fail
