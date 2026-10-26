@@ -14,3 +14,4 @@ import FrontierGEMLA.Ladder.S1Authority
 import FrontierGEMLA.Ladder.S2Candidate
 import FrontierGEMLA.Ladder.S2Qualification
 import FrontierGEMLA.Ladder.S2Admission
+import FrontierGEMLA.Ladder.S2NonEscalation
