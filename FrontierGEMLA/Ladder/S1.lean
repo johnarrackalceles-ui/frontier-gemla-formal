@@ -1,5 +1,19 @@
 import FrontierGEMLA.Shared.Types
 
+/-!
+S1 source correspondence
+
+Primary sources for this module:
+- Dual-Track Addendum v5.3, sections 7, 7.1 and 7.2
+- Eq. AD-16: S1 acceptance
+- Eq. AD-17: conservative S1 entry
+- Context section 22, items 2-6
+- Scope revision 17, section 1.8 and D4
+
+These references document the manual source correspondence of the
+formalization. Lean does not itself verify fidelity to the source text.
+-/
+
 namespace FrontierGEMLA
 
 /-! ### S1 entry (Eq. AD-17) -/
@@ -68,18 +82,32 @@ inductive Reads (anomaly : Bool) (t : S1Terms) : Outcome → Prop where
   | recover :
       anomaly = true → Reads anomaly t .recover
 
-/-- OPEN CHOICE 1. The wording does not make the outcome a function of
-the evidence: one term NO and another UNKNOWN reads as both HOLD and
-REJECT. -/
+/--
+OPEN CHOICE 1.
+
+The wording does not make the outcome a function of the evidence:
+one term NO and another UNKNOWN reads as both HOLD and REJECT.
+
+Context section 22, item 6 describes the outcome mapping as proposed
+and states that the governing source definitions control if they differ.
+This theorem records the unresolved overlap; it does not choose a
+precedence rule.
+-/
 theorem hold_and_reject_overlap :
     ∃ t : S1Terms, Reads false t .hold ∧ Reads false t .reject :=
   ⟨⟨.no, .unknown, .yes⟩,
    .hold (Or.inr (Or.inl rfl)),
    .reject (Or.inl rfl)⟩
 
-/-- OPEN CHOICE 2. The wording gives no precedence between an anomaly
-and a failed term: one term NO with an anomaly reads as both REJECT and
-RECOVER. -/
+/--
+OPEN CHOICE 2.
+
+The wording gives no precedence between an anomaly and a failed term:
+one term NO with an anomaly reads as both REJECT and RECOVER.
+
+This theorem records the unresolved overlap; it does not choose a
+precedence rule.
+-/
 theorem reject_and_recover_overlap :
     ∃ t : S1Terms, Reads true t .reject ∧ Reads true t .recover :=
   ⟨⟨.no, .yes, .yes⟩,

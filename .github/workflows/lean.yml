@@ -9,6 +9,7 @@ on:
       - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+      - ".gitattributes"
 
   pull_request:
     paths:
@@ -18,6 +19,7 @@ on:
       - "lake-manifest.json"
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
+      - ".gitattributes"
 
   workflow_dispatch:
 
@@ -34,9 +36,39 @@ jobs:
           test: false
           lint: false
           use-mathlib-cache: false
+          use-github-cache: false
           axiom-audit: true
           axiom-audit-root: FrontierGEMLA
           axiom-audit-allow: "propext"
 
-      - name: Print theorem axioms
-        run: lake env lean FrontierGEMLA/Spike/AxiomReport.lean
+      - name: Enforce historical spike isolation
+        shell: bash
+        run: |
+          if grep -REn \
+            --include='*.lean' \
+            --exclude-dir=Spike \
+            '^[[:space:]]*import[[:space:]]+FrontierGEMLA\.Spike' \
+            FrontierGEMLA
+          then
+            echo "ERROR: production modules must not import FrontierGEMLA.Spike.*"
+            exit 1
+          fi
+
+      - name: Build historical and modular axiom reports
+        run: |
+          lake build FrontierGEMLA.Spike.AxiomReport
+          lake build FrontierGEMLA.Ladder.AxiomReport
+
+      - name: Compare historical and modular axiom baselines
+        shell: bash
+        run: |
+          lake env lean FrontierGEMLA/Spike/AxiomReport.lean > /tmp/spike-axioms.txt
+          lake env lean FrontierGEMLA/Ladder/AxiomReport.lean > /tmp/ladder-axioms.txt
+
+          echo "Historical spike:"
+          cat /tmp/spike-axioms.txt
+
+          echo "Modular implementation:"
+          cat /tmp/ladder-axioms.txt
+
+          diff -u /tmp/spike-axioms.txt /tmp/ladder-axioms.txt
