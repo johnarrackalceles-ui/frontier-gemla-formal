@@ -10,6 +10,7 @@ on:
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
       - ".gitattributes"
+      - "README.md"
 
   pull_request:
     paths:
@@ -20,6 +21,7 @@ on:
       - "lean-toolchain"
       - ".github/workflows/lean.yml"
       - ".gitattributes"
+      - "README.md"
 
   workflow_dispatch:
 
@@ -40,6 +42,18 @@ jobs:
           axiom-audit: true
           axiom-audit-root: FrontierGEMLA
           axiom-audit-allow: "propext"
+      - name: Reject unfinished Lean proofs
+        shell: bash
+        run: |
+          if grep -REn \
+            --include='*.lean' \
+            --exclude-dir='.lake' \
+            '\b(sorry|admit)\b' \
+            FrontierGEMLA FrontierGEMLA.lean
+          then
+            echo "ERROR: publication artifact contains sorry or admit"
+            exit 1
+          fi
 
       - name: Enforce historical spike isolation
         shell: bash
