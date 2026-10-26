@@ -166,3 +166,79 @@ theorem jq_requires_self_observation_schema
   h.2.2.2.2.2.2.2
 
 end FrontierGEMLA
+
+namespace FrontierGEMLA
+
+theorem jq_fails_if_not_joinable
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ joinable a b) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_joinable joinable a b t h)
+
+theorem jq_fails_if_semantic_meanings_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.semanticMeanings) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_semantic_meanings joinable a b t h)
+
+theorem jq_fails_if_identity_namespaces_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.identityNamespaces) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_identity_namespaces joinable a b t h)
+
+theorem jq_fails_if_evidence_hash_semantics_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.evidenceHashSemantics) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_evidence_hash_semantics joinable a b t h)
+
+theorem jq_fails_if_reconstruction_rules_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.reconstructionRules) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_reconstruction_rules joinable a b t h)
+
+theorem jq_fails_if_protected_boundaries_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.protectedBoundaries) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_protected_boundaries joinable a b t h)
+
+theorem jq_fails_if_promotion_semantics_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.promotionSemantics) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_promotion_semantics joinable a b t h)
+
+theorem jq_fails_if_self_observation_schema_fail
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (hFail : ¬ t.selfObservationSchema) :
+    ¬ Jq joinable a b t := by
+  intro h
+  exact hFail (jq_requires_self_observation_schema joinable a b t h)
+
+end FrontierGEMLA
