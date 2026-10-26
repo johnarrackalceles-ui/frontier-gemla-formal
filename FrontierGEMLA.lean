@@ -6,3 +6,4 @@ import FrontierGEMLA.Ladder.Jq
 import FrontierGEMLA.Ladder.S1Identity
 import FrontierGEMLA.Ladder.Jc2
 import FrontierGEMLA.Ladder.ConvergenceClosure
+import FrontierGEMLA.Ladder.S1AcceptanceClosure
