@@ -1,16 +1,26 @@
-import FrontierGEMLA.Ladder.Conditional
-import FrontierGEMLA.Ladder.S1
-import FrontierGEMLA.Ladder.Jq
-import FrontierGEMLA.Ladder.S1Identity
-import FrontierGEMLA.Ladder.Jc2
+import FrontierGEMLA
 
+/-!
+Publication-facing axiom report for the FrontierGEMLA Lean artifact.
+
+This file audits the principal logical theorem surface from the modular
+ladder through the Phase 6 cross-phase closure.
+
+The report intentionally excludes ordinary data projections and
+definitions whose result is not a proposition.
+-/
+
+-- Historical modular baseline.
+-- `enterS1_ignores_G2_G3` intentionally preserves the historical spike
+-- proof and therefore reports Lean's standard `propext` axiom.
 #print axioms FrontierGEMLA.enterS1_ignores_G2_G3
 #print axioms FrontierGEMLA.acceptS1_needs_ops
 #print axioms FrontierGEMLA.ConditionalResult.label_inherited
 #print axioms FrontierGEMLA.hold_and_reject_overlap
 #print axioms FrontierGEMLA.reject_and_recover_overlap
-#print axioms FrontierGEMLA.jq_pass_allows_distinct_evidence_states
 
+-- Jq compatibility
+#print axioms FrontierGEMLA.jq_pass_allows_distinct_evidence_states
 #print axioms FrontierGEMLA.jq_requires_joinable
 #print axioms FrontierGEMLA.jq_requires_semantic_meanings
 #print axioms FrontierGEMLA.jq_requires_identity_namespaces
@@ -19,7 +29,6 @@ import FrontierGEMLA.Ladder.Jc2
 #print axioms FrontierGEMLA.jq_requires_protected_boundaries
 #print axioms FrontierGEMLA.jq_requires_promotion_semantics
 #print axioms FrontierGEMLA.jq_requires_self_observation_schema
-
 #print axioms FrontierGEMLA.jq_fails_if_not_joinable
 #print axioms FrontierGEMLA.jq_fails_if_semantic_meanings_fail
 #print axioms FrontierGEMLA.jq_fails_if_identity_namespaces_fail
@@ -29,6 +38,7 @@ import FrontierGEMLA.Ladder.Jc2
 #print axioms FrontierGEMLA.jq_fails_if_promotion_semantics_fail
 #print axioms FrontierGEMLA.jq_fails_if_self_observation_schema_fail
 
+-- Phase 2: convergence
 #print axioms FrontierGEMLA.enterS1Typed_bridge
 #print axioms FrontierGEMLA.enterS1Typed_requires_shared_generation
 #print axioms FrontierGEMLA.enterS1Typed_requires_shared_constitution
@@ -37,3 +47,149 @@ import FrontierGEMLA.Ladder.Jc2
 #print axioms FrontierGEMLA.enterS1Converged_bridge
 #print axioms FrontierGEMLA.enterS1Converged_requires_jc2
 #print axioms FrontierGEMLA.enterS1Converged_requires_joinable
+#print axioms FrontierGEMLA.c2_record_can_exist_without_jc2
+#print axioms FrontierGEMLA.enterS1Converged_requires_shared_generation
+#print axioms FrontierGEMLA.enterS1Converged_requires_shared_constitution
+
+-- Phase 3A: S1 acceptance
+#print axioms FrontierGEMLA.acceptS1_requires_capability
+#print axioms FrontierGEMLA.acceptS1_requires_operations
+#print axioms FrontierGEMLA.acceptS1_requires_constitution
+#print axioms FrontierGEMLA.acceptS1_of_required_terms
+#print axioms FrontierGEMLA.acceptS1_needs_capability
+#print axioms FrontierGEMLA.acceptS1_needs_constitution
+
+-- Phase 3B: entry / acceptance non-collapse
+#print axioms FrontierGEMLA.enterS1Converged_does_not_determine_acceptance
+#print axioms FrontierGEMLA.acceptS1_does_not_establish_converged_entry
+
+-- Phase 3C: promotion / activation / authority separation
+#print axioms FrontierGEMLA.s1PromotionQualified_requires_acceptance
+#print axioms FrontierGEMLA.s1PromotionQualified_requires_verifier
+#print axioms FrontierGEMLA.s1SuccessorActivated_requires_promotion
+#print axioms FrontierGEMLA.s1SuccessorAuthorized_requires_activation
+#print axioms FrontierGEMLA.acceptS1_can_hold_without_promotion_qualification
+#print axioms FrontierGEMLA.promotion_qualification_can_hold_without_activation
+#print axioms FrontierGEMLA.activation_can_hold_without_authority
+
+-- Phase 3D: promotion packet
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_requires_acceptance
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_requires_capability
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_requires_operations
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_requires_constitution
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_requires_verifier
+#print axioms FrontierGEMLA.s1PromotionPacketQualified_of_evidence
+#print axioms FrontierGEMLA.s1PromotionPacket_does_not_self_qualify
+
+-- Phase 3E: S1 admission
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_requires_qualified_packet
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_requires_activation
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_requires_candidate_identity
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_requires_acceptance
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_requires_verifier
+#print axioms FrontierGEMLA.s1AdmissionRecordValid_of_requirements
+#print axioms FrontierGEMLA.s1AdmissionRecord_fails_without_activation
+
+-- Phase 3F: S1 authority
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_requires_admission
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_requires_authority
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_requires_generation_identity
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_requires_qualified_packet
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_requires_acceptance
+#print axioms FrontierGEMLA.s1AuthorityRecordValid_of_requirements
+#print axioms FrontierGEMLA.s1AuthorityRecord_fails_without_authority
+
+-- Phase 4A: S2 candidate
+#print axioms FrontierGEMLA.s2ShadowCandidate_requires_no_production_authority
+#print axioms FrontierGEMLA.s2_candidate_can_propose_distinct_improver
+#print axioms FrontierGEMLA.s2_candidate_can_exist_without_production_authority
+
+-- Phase 4B: S2 qualification
+#print axioms FrontierGEMLA.s2PromotionQualified_requires_capability_history
+#print axioms FrontierGEMLA.s2PromotionQualified_requires_operational_history
+#print axioms FrontierGEMLA.s2PromotionQualified_requires_constitutional_history
+#print axioms FrontierGEMLA.s2PromotionQualified_requires_candidate_improver
+#print axioms FrontierGEMLA.s2PromotionQualified_requires_self_invariant
+#print axioms FrontierGEMLA.s2PromotionQualified_of_requirements
+#print axioms FrontierGEMLA.s2Candidate_does_not_self_qualify
+
+-- Phase 4C: protected S2 admission
+#print axioms FrontierGEMLA.s2AdmissionRecordValid_requires_qualification
+#print axioms FrontierGEMLA.s2AdmissionRecordValid_requires_verifier
+#print axioms FrontierGEMLA.s2AdmissionRecordValid_requires_recovery
+#print axioms FrontierGEMLA.s2AdmissionRecordValid_requires_activation
+#print axioms FrontierGEMLA.s2AdmissionRecordValid_of_requirements
+#print axioms FrontierGEMLA.s2Qualification_can_hold_without_admission
+#print axioms FrontierGEMLA.s2AdmissionRecord_fails_without_recovery
+
+-- Phase 4D: S2 non-self-escalation
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_requires_admission
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_requires_non_self_escalation
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_forbids_verifier_self_grant
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_forbids_authority_issuer_self_grant
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_forbids_signing_key_self_grant
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_forbids_semantic_constitution_self_grant
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_forbids_recovery_self_grant
+#print axioms FrontierGEMLA.s2GovernedAdmissionValid_of_requirements
+#print axioms FrontierGEMLA.s2Admission_can_remain_non_self_escalating
+
+-- Phase 4 closure
+#print axioms FrontierGEMLA.s2Closure_governed_requires_admission
+#print axioms FrontierGEMLA.s2Closure_governed_requires_qualification
+#print axioms FrontierGEMLA.s2Admission_does_not_determine_governed_admission
+#print axioms FrontierGEMLA.s2Closure_governed_cannot_bypass_qualification
+
+-- Phase 5A: S3 readiness
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_requires_t_program
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_requires_r_program
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_requires_non_self_escalation
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_requires_recovery_preservation
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_requires_meta_improvement_stability
+#print axioms FrontierGEMLA.s3ReadinessSatisfied_of_requirements
+#print axioms FrontierGEMLA.s3Readiness_fails_without_meta_improvement_stability
+
+-- Phase 5B: unified S3 claim gate
+#print axioms FrontierGEMLA.s3ClaimGate_requires_cross_domain_superiority
+#print axioms FrontierGEMLA.s3ClaimGate_requires_unfamiliar_domain_acquisition
+#print axioms FrontierGEMLA.s3ClaimGate_requires_transfer_efficiency
+#print axioms FrontierGEMLA.s3ClaimGate_requires_two_accepted_generations
+#print axioms FrontierGEMLA.s3ClaimGate_requires_second_order_improvement
+#print axioms FrontierGEMLA.s3ClaimGate_requires_architecture_optimization
+#print axioms FrontierGEMLA.s3ClaimGate_requires_readiness
+#print axioms FrontierGEMLA.s3ClaimGate_requires_recovery
+#print axioms FrontierGEMLA.s3ClaimGate_requires_authority_separation
+#print axioms FrontierGEMLA.s3ClaimGate_requires_audit_scalability
+#print axioms FrontierGEMLA.s3ClaimEvidence_does_not_self_qualify
+
+-- Phase 5C: bounded S3 claim
+#print axioms FrontierGEMLA.s3BoundedCandidateClaim_requires_gate
+#print axioms FrontierGEMLA.s3BoundedCandidateClaim_requires_envelope
+#print axioms FrontierGEMLA.s3BoundedCandidateClaim_requires_readiness
+#print axioms FrontierGEMLA.s3BoundedCandidateClaim_fails_outside_envelope
+#print axioms FrontierGEMLA.s3BoundedCandidateClaim_does_not_establish_universal_claims
+
+-- Phase 6A: concrete recursive-development evidence
+#print axioms FrontierGEMLA.s1AcceptedGenerationPairValid_requires_first
+#print axioms FrontierGEMLA.s1AcceptedGenerationPairValid_requires_second
+#print axioms FrontierGEMLA.s1AcceptedGenerationPairValid_requires_distinct_generations
+#print axioms FrontierGEMLA.s1AcceptedGenerationPairValid_requires_independent_audit
+#print axioms FrontierGEMLA.s1AcceptedGenerationPairValid_meets_minimum_count
+#print axioms FrontierGEMLA.s3RecursiveDevelopmentEvidenceValid_requires_s1_pair
+#print axioms FrontierGEMLA.s3RecursiveDevelopmentEvidenceValid_requires_s2
+
+-- Phase 6B: concrete evidence binding into S3
+#print axioms FrontierGEMLA.s3CrossPhaseEvidence_generation_count_binding
+#print axioms FrontierGEMLA.s3CrossPhaseEvidence_second_order_binding
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_requires_recursive_development
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_requires_s1_pair
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_requires_s2
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_requires_s3_gate
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_of_requirements
+
+-- Phase 6C: end-to-end bounded-claim closure
+#print axioms FrontierGEMLA.s3CrossPhaseBoundedClaim_requires_cross_phase_gate
+#print axioms FrontierGEMLA.s3CrossPhaseBoundedClaim_requires_envelope
+#print axioms FrontierGEMLA.s3CrossPhaseBoundedClaim_requires_s1_pair
+#print axioms FrontierGEMLA.s3CrossPhaseBoundedClaim_requires_s2
+#print axioms FrontierGEMLA.s3CrossPhaseBoundedClaim_implies_bounded_candidate_claim
+#print axioms FrontierGEMLA.s3CrossPhaseClaimGate_fails_without_cross_domain
