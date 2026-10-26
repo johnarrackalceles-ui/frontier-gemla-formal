@@ -8,3 +8,4 @@ import FrontierGEMLA.Ladder.Jc2
 import FrontierGEMLA.Ladder.ConvergenceClosure
 import FrontierGEMLA.Ladder.S1AcceptanceClosure
 import FrontierGEMLA.Ladder.S1Noncollapse
+import FrontierGEMLA.Ladder.S1Promotion
