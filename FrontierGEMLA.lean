@@ -20,3 +20,4 @@ import FrontierGEMLA.Ladder.S3Readiness
 import FrontierGEMLA.Ladder.S3ClaimGate
 import FrontierGEMLA.Ladder.S3BoundedClaim
 import FrontierGEMLA.Ladder.S3RecursiveBinding
+import FrontierGEMLA.Ladder.S3GateBinding
