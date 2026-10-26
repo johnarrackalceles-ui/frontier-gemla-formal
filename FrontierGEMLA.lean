@@ -10,3 +10,4 @@ import FrontierGEMLA.Ladder.S1AcceptanceClosure
 import FrontierGEMLA.Ladder.S1Noncollapse
 import FrontierGEMLA.Ladder.S1Promotion
 import FrontierGEMLA.Ladder.S1Admission
+import FrontierGEMLA.Ladder.S1Authority
