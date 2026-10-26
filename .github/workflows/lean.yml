@@ -54,21 +54,25 @@ jobs:
             exit 1
           fi
 
-      - name: Build historical and modular axiom reports
+      - name: Build axiom reports
         run: |
           lake build FrontierGEMLA.Spike.AxiomReport
+          lake build FrontierGEMLA.Ladder.SpikeParityReport
           lake build FrontierGEMLA.Ladder.AxiomReport
 
-      - name: Compare historical and modular axiom baselines
+      - name: Compare historical spike with modular baseline
         shell: bash
         run: |
           lake env lean FrontierGEMLA/Spike/AxiomReport.lean > /tmp/spike-axioms.txt
-          lake env lean FrontierGEMLA/Ladder/AxiomReport.lean > /tmp/ladder-axioms.txt
+          lake env lean FrontierGEMLA/Ladder/SpikeParityReport.lean > /tmp/parity-axioms.txt
 
           echo "Historical spike:"
           cat /tmp/spike-axioms.txt
 
-          echo "Modular implementation:"
-          cat /tmp/ladder-axioms.txt
+          echo "Modular spike baseline:"
+          cat /tmp/parity-axioms.txt
 
-          diff -u /tmp/spike-axioms.txt /tmp/ladder-axioms.txt
+          diff -u /tmp/spike-axioms.txt /tmp/parity-axioms.txt
+
+      - name: Print current modular axiom report
+        run: lake env lean FrontierGEMLA/Ladder/AxiomReport.lean
