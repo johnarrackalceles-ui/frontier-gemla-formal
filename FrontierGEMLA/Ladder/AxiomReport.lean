@@ -8,3 +8,12 @@ import FrontierGEMLA.Ladder.Jq
 #print axioms FrontierGEMLA.hold_and_reject_overlap
 #print axioms FrontierGEMLA.reject_and_recover_overlap
 #print axioms FrontierGEMLA.jq_pass_allows_distinct_evidence_states
+
+#print axioms FrontierGEMLA.jq_requires_joinable
+#print axioms FrontierGEMLA.jq_requires_semantic_meanings
+#print axioms FrontierGEMLA.jq_requires_identity_namespaces
+#print axioms FrontierGEMLA.jq_requires_evidence_hash_semantics
+#print axioms FrontierGEMLA.jq_requires_reconstruction_rules
+#print axioms FrontierGEMLA.jq_requires_protected_boundaries
+#print axioms FrontierGEMLA.jq_requires_promotion_semantics
+#print axioms FrontierGEMLA.jq_requires_self_observation_schema

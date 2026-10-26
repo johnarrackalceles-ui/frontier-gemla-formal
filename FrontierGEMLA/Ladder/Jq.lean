@@ -66,3 +66,103 @@ theorem jq_pass_allows_distinct_evidence_states :
          True.intro, True.intro, True.intro, True.intro⟩
 
 end FrontierGEMLA
+
+namespace FrontierGEMLA
+
+/--
+A passing Jq checkpoint requires the two track states to satisfy the
+declared joinability relation.
+-/
+theorem jq_requires_joinable
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    joinable a b :=
+  h.1
+
+/--
+A passing Jq checkpoint requires consistency of semantic-registry and
+event meanings.
+-/
+theorem jq_requires_semantic_meanings
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.semanticMeanings :=
+  h.2.1
+
+/--
+A passing Jq checkpoint requires consistency of the relevant identity
+namespaces.
+-/
+theorem jq_requires_identity_namespaces
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.identityNamespaces :=
+  h.2.2.1
+
+/--
+A passing Jq checkpoint requires consistency of evidence-reference and
+canonical-hash semantics.
+-/
+theorem jq_requires_evidence_hash_semantics
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.evidenceHashSemantics :=
+  h.2.2.2.1
+
+/--
+A passing Jq checkpoint requires consistency of trajectory/AEL
+versioning and historical reconstruction rules.
+-/
+theorem jq_requires_reconstruction_rules
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.reconstructionRules :=
+  h.2.2.2.2.1
+
+/--
+A passing Jq checkpoint requires preservation of the protected audit,
+authority, and recovery boundaries.
+-/
+theorem jq_requires_protected_boundaries
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.protectedBoundaries :=
+  h.2.2.2.2.2.1
+
+/--
+A passing Jq checkpoint requires consistency of promotion and
+persistent-change semantics.
+-/
+theorem jq_requires_promotion_semantics
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.promotionSemantics :=
+  h.2.2.2.2.2.2.1
+
+/--
+A passing Jq checkpoint requires consistency of the self-observation
+schema elements needed for later S1 convergence.
+-/
+theorem jq_requires_self_observation_schema
+    {α : Type u} {β : Type v}
+    (joinable : α → β → Prop)
+    (a : α) (b : β) (t : JqTerms)
+    (h : Jq joinable a b t) :
+    t.selfObservationSchema :=
+  h.2.2.2.2.2.2.2
+
+end FrontierGEMLA
